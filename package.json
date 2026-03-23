@@ -3,16 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "private": true,
+  "author": "Gustavo Pertuzzatti Rizzon <gustavop.rizzon@outlook.com>",
+  "license": "ISC",
   "scripts": {
     "build": "tsc",
     "dev": "tsx src/server.ts",
     "start": "node dist/server.js",
     "test": "jest"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
     "better-sqlite3": "^12.8.0",
     "csv-parse": "^6.2.1",

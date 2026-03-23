@@ -105,3 +105,7 @@ tests/
                 ├── get.spec.ts          # Testes de integração
                 └── movielist.mock.csv   # CSV de mock para testes
 ```
+
+## Melhorias futuras
+
+- **Cache da resposta**: como os dados do CSV são carregados uma única vez na inicialização e não mudam em runtime, o resultado do endpoint poderia ser calculado e cacheado na primeira requisição, evitando reprocessamento a cada chamada.

@@ -1,0 +1,86 @@
+openapi: 3.0.3
+info:
+  title: Golden Raspberry Awards API
+  description: API RESTful para leitura da lista de indicados e vencedores da categoria Pior Filme do Golden Raspberry Awards.
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:3000
+    description: Servidor local
+
+paths:
+  /health:
+    get:
+      summary: Health Check
+      description: Verifica se a aplicação está em execução.
+      operationId: healthCheck
+      responses:
+        "200":
+          description: Aplicação em execução.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "Up!"
+
+  /api/producers/awards-interval:
+    get:
+      summary: Intervalo de prêmios dos produtores
+      description: >
+        Retorna o(s) produtor(es) com maior intervalo entre dois prêmios
+        consecutivos e o(s) com menor intervalo.
+      operationId: getAwardsInterval
+      responses:
+        "200":
+          description: Intervalos mínimos e máximos calculados com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AwardsIntervalResult"
+
+components:
+  schemas:
+    ProducerInterval:
+      type: object
+      required:
+        - producer
+        - interval
+        - previousWin
+        - followingWin
+      properties:
+        producer:
+          type: string
+          description: Nome do produtor.
+          example: Joel Silver
+        interval:
+          type: integer
+          description: Intervalo em anos entre dois prêmios consecutivos.
+          example: 1
+        previousWin:
+          type: integer
+          description: Ano do prêmio anterior.
+          example: 1990
+        followingWin:
+          type: integer
+          description: Ano do prêmio seguinte.
+          example: 1991
+
+    AwardsIntervalResult:
+      type: object
+      required:
+        - min
+        - max
+      properties:
+        min:
+          type: array
+          description: Produtor(es) com o menor intervalo entre dois prêmios consecutivos.
+          items:
+            $ref: "#/components/schemas/ProducerInterval"
+        max:
+          type: array
+          description: Produtor(es) com o maior intervalo entre dois prêmios consecutivos.
+          items:
+            $ref: "#/components/schemas/ProducerInterval"

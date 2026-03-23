@@ -7,7 +7,8 @@
   "author": "Gustavo Pertuzzatti Rizzon <gustavop.rizzon@outlook.com>",
   "license": "ISC",
   "scripts": {
-    "build": "tsc -b tsconfig.json",
+    "prebuild": "rimraf dist",
+    "build": "tsc -b tsconfig.build.json",
     "start": "tsx src/server.ts",
     "test": "jest"
   },
@@ -23,6 +24,7 @@
     "@types/jest": "^30.0.0",
     "@types/node": "^24.12.0",
     "jest": "^30.3.0",
+    "rimraf": "^6.1.3",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
